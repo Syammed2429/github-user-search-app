@@ -15,6 +15,13 @@ import {
 export function ModeToggle() {
   const { setTheme } = useTheme();
 
+  const getUserDetail = async () => {
+    const request = await fetch('https://api.github.com/users/syammed2429');
+    const response = await request.json();
+    console.log('response:', response);
+  };
+  getUserDetail();
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
