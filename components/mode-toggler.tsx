@@ -1,19 +1,14 @@
 'use client';
 
 import * as React from 'react';
-import { Moon, Sun } from 'lucide-react';
+import Image from 'next/image';
 import { useTheme } from 'next-themes';
-
-import { Button } from '@/components/ui/button';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
+import moonIcon from '@/public/assets/icon-moon.svg';
+import sunIcon from '@/public/assets/icon-sun.svg';
+import { DevFinder } from './svg-components/svg-components';
 
 export function ModeToggle() {
-  const { setTheme } = useTheme();
+  const { setTheme, theme } = useTheme();
 
   const getUserDetail = async () => {
     const request = await fetch('https://api.github.com/users/syammed2429');
@@ -23,25 +18,28 @@ export function ModeToggle() {
   getUserDetail();
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant='outline' size='icon'>
-          <Sun className='h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0' />
-          <Moon className='absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100' />
-          <span className='sr-only'>Toggle theme</span>
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align='end'>
-        <DropdownMenuItem onClick={() => setTheme('light')}>
+    <div className='flex justify-between w-[45rem]'>
+      <div>
+        <DevFinder />
+      </div>
+      {theme === 'dark' ? (
+        <button
+          className='flex items-center gap-3 cursor-pointer'
+          onClick={() => setTheme('light')}
+          tabIndex={0}
+        >
           Light
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme('dark')}>
-          Dark
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme('system')}>
-          System
-        </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
+          <Image src={sunIcon} alt={'sunIcon'} />
+        </button>
+      ) : (
+        <button
+          className='flex items-center gap-3 cursor-pointer'
+          onClick={() => setTheme('dark')}
+          tabIndex={0}
+        >
+          Dark <Image src={moonIcon} alt={'moonIcon'} />
+        </button>
+      )}
+    </div>
   );
 }
