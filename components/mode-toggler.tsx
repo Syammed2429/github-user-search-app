@@ -10,12 +10,6 @@ import { DevFinder } from './svg-components/svg-components';
 export function ModeToggle() {
   const { setTheme, theme } = useTheme();
 
-  const getUserDetail = async () => {
-    const request = await fetch('https://api.github.com/users/syammed2429');
-    const response = await request.json();
-    console.log('response:', response);
-  };
-  getUserDetail();
 
   return (
     <div className='flex justify-between w-[45rem]'>
