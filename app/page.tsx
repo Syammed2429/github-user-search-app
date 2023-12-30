@@ -1,9 +1,10 @@
 import { ModeToggle } from '@/components/mode-toggler';
+import { GithubContainer } from '@/containers/github-container/github-container';
 
 export default function Home() {
   return (
-    <main className='flex  items-center justify-center  p-24'>
-      <ModeToggle />
+    <main className=' min-h-screen flex flex-col  items-center justify-center '>
+      <GithubContainer />
     </main>
   );
 }

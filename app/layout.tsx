@@ -2,12 +2,14 @@ import type { Metadata } from 'next';
 import { Space_Mono } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider/theme-provider';
+import Providers from '@/lib/providers';
 
 // const spaceMono = Space_Mono({weights: {400,700}, subsets: ['latin'] });
 const spaceMono = Space_Mono({
   weight: ['400', '700'],
   subsets: ['latin'],
 });
+1;
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -22,14 +24,16 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={spaceMono.className}>
-        <ThemeProvider
-          attribute='class'
-          defaultTheme='system'
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-        </ThemeProvider>
+        <Providers>
+          <ThemeProvider
+            attribute='class'
+            defaultTheme='system'
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
+        </Providers>
       </body>
     </html>
   );
