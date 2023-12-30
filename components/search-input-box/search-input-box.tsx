@@ -3,6 +3,8 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import Image from 'next/image';
 import searchIcon from '@/public/assets/icon-search.svg';
+import { cn } from '@/lib/utils';
+import { useTheme } from 'next-themes';
 
 interface SearchInputBoxProps {
   onSearch: (searchText: string) => void;
@@ -13,13 +15,23 @@ export const SearchInputBox: FC<SearchInputBoxProps> = ({
   onSearch,
   resultsNotFound,
 }) => {
+  const { theme } = useTheme();
+
   // states
   const [searchKeyWord, setSearchKeyWord] = useState<string>('');
   const handleSearch = () => {
     onSearch(searchKeyWord);
   };
   return (
-    <div className='rounded-[0.93rem]  flex items-center relative w-full my-6 shadow-[0px_16px_30px_-10px_rgba(70,96,187,0.20)]'>
+    <div
+      className={cn(
+        `rounded-[0.93rem]  flex items-center relative w-full my-6`,
+        {
+          'shadow-[0px_16px_30px_-10px_rgba(70,96,187,0.20)]':
+            theme === 'light',
+        }
+      )}
+    >
       <Image
         src={searchIcon}
         alt={'searchIcon'}

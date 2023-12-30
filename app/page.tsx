@@ -1,5 +1,5 @@
 import { ModeToggle } from '@/components/mode-toggler';
-import { GithubContainer } from '@/containers/github-container/github-container';
+import { GithubContainer } from '@/container/github-container/github-container';
 
 export default function Home() {
   return (
