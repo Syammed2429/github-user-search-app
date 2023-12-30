@@ -6,7 +6,7 @@ import searchIcon from '@/public/assets/icon-search.svg';
 
 export const SearchInputBox = () => {
   return (
-    <div className='rounded-[0.93rem bg-white] flex items-center relative w-full my-6 shadow-[0px_16px_30px_-10px_rgba(70,96,187,0.20)]'>
+    <div className='rounded-[0.93rem]  flex items-center relative w-full my-6 shadow-[0px_16px_30px_-10px_rgba(70,96,187,0.20)]'>
       <Image
         src={searchIcon}
         alt={'searchIcon'}
