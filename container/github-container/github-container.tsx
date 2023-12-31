@@ -8,8 +8,6 @@ import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
 import { ResultsCard } from '@/components/card/results-card';
 
-import { Skeleton } from '@/components/ui/skeleton';
-
 const searchGitHubUsers = async (query: any) => {
   const [_search, userId] = query?.queryKey;
   const response = await axios.get(`https://api.github.com/users/${userId}`);
@@ -19,7 +17,7 @@ const searchGitHubUsers = async (query: any) => {
 export const GithubContainer = () => {
   const [searchedUser, setSearchedUser] = useState<string>('octocat');
 
-  const { data, isLoading, isFetching } = useQuery({
+  const { data, isFetching } = useQuery({
     queryKey: ['github', searchedUser],
     queryFn: searchGitHubUsers,
   });
@@ -33,16 +31,10 @@ export const GithubContainer = () => {
           resultsNotFound={!data}
         />
 
-        {isFetching ? (
-          <div className='flex items-center '>
-            <Skeleton className='bg-gray-500 h-12 w-12 rounded-full' />
-            <div className='space-y-2'>
-              <Skeleton className='bg-gray-500 h-4 w-[250px]' />
-              <Skeleton className='bg-gray-500 h-4 w-[200px]' />
-            </div>
-          </div>
+        {data ? (
+          <ResultsCard data={data} isFetching={isFetching} />
         ) : (
-          <ResultsCard data={data} />
+          <div>No Results</div>
         )}
       </div>
     </div>

@@ -17,12 +17,14 @@ import {
 } from '@/components/svg-components/svg-components';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
+import { Skeleton } from '@/components/ui/skeleton';
 
 interface ResultsCardProps {
   data: any;
+  isFetching: boolean;
 }
 
-export const ResultsCard: FC<ResultsCardProps> = ({ data }) => {
+export const ResultsCard: FC<ResultsCardProps> = ({ data, isFetching }) => {
   const { theme } = useTheme();
   const getTextClass = (theme: string | undefined) =>
     cn('flex gap-3', {
@@ -39,6 +41,19 @@ export const ResultsCard: FC<ResultsCardProps> = ({ data }) => {
     year: 'numeric',
     timeZone: 'UTC',
   });
+
+  if (isFetching) {
+    return (
+
+        <div className='flex items-center '>
+      <Skeleton className='bg-gray-500 h-12 w-12 rounded-full' />
+      <div className='space-y-2'>
+        <Skeleton className='bg-gray-500 h-4 w-[250px]' />
+        <Skeleton className='bg-gray-500 h-4 w-[200px]' />
+      </div>
+    </div>
+        )
+  }
 
   return (
     <Card

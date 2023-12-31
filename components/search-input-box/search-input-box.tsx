@@ -43,7 +43,11 @@ export const SearchInputBox: FC<SearchInputBoxProps> = ({
         type='text'
         placeholder='Search GitHub username…'
         className='rounded-[0.95rem]  text-sm md:text-lg  pl-10 pr-[8rem] md:pl-14 md:pr-[8rem] ring-0 h-[4rem] w-full border-none'
-        onChange={(e) => setSearchKeyWord(e.target.value)}
+        onChange={(e) => {
+          if (e.target.value === '') {
+            onSearch('octocat');
+          } else setSearchKeyWord(e.target.value);
+        }}
         onKeyDown={(e) => {
           if (e.key === 'Enter') {
             onSearch((e.target as HTMLInputElement).value);
