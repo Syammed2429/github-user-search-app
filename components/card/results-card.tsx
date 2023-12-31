@@ -23,7 +23,7 @@ interface ResultsCardProps {
 }
 
 export const ResultsCard: FC<ResultsCardProps> = ({ data }) => {
-  const { theme, systemTheme, resolvedTheme, forcedTheme } = useTheme();
+  const { theme } = useTheme();
   const getTextClass = (theme: string | undefined) =>
     cn('flex gap-3', {
       'text-[#4B6A9B]': theme === 'light',
