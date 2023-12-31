@@ -10,9 +10,8 @@ import { DevFinder } from './svg-components/svg-components';
 export function ModeToggle() {
   const { setTheme, theme } = useTheme();
 
-
   return (
-    <div className='flex justify-between w-[45rem]'>
+    <div className='flex justify-between w-full px-3 md:px-0 md:w-[45rem]'>
       <div>
         <DevFinder />
       </div>

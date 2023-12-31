@@ -25,7 +25,7 @@ export const SearchInputBox: FC<SearchInputBoxProps> = ({
   return (
     <div
       className={cn(
-        `rounded-[0.93rem]  flex items-center relative w-full my-6`,
+        `rounded-[0.93rem]  flex items-center relative mx-2 md:mx-0 my-6`,
         {
           'shadow-[0px_16px_30px_-10px_rgba(70,96,187,0.20)]':
             theme === 'light',
@@ -37,12 +37,12 @@ export const SearchInputBox: FC<SearchInputBoxProps> = ({
         alt={'searchIcon'}
         width={20}
         height={20}
-        className='absolute left-4 w-6 h-6 z-10'
+        className='absolute left-4 w-4 md:w-6 h-4 md:h-6 z-10'
       />
       <Input
         type='text'
         placeholder='Search GitHub username…'
-        className='rounded-[0.95rem]  text-lg  pl-14 pr-20 ring-0 h-[4rem] w-full border-none'
+        className='rounded-[0.95rem]  text-sm md:text-lg  pl-10 pr-[8rem] md:pl-14 md:pr-20 ring-0 h-[4rem] w-full border-none'
         onChange={(e) => setSearchKeyWord(e.target.value)}
         onKeyDown={(e) => {
           if (e.key === 'Enter') {
@@ -51,7 +51,7 @@ export const SearchInputBox: FC<SearchInputBoxProps> = ({
         }}
       />
       {resultsNotFound && (
-        <div className='absolute right-[8rem] px-2 text-[#F74646] font-bold'>
+        <div className='absolute top-12 md:right-[8rem] px-2 text-[#F74646] font-bold'>
           No results
         </div>
       )}

@@ -42,9 +42,7 @@ export const GithubContainer = () => {
             </div>
           </div>
         ) : (
-          <div>
             <ResultsCard data={data} />
-          </div>
         )}
       </div>
     </div>

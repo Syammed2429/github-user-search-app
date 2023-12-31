@@ -42,7 +42,7 @@ export const ResultsCard: FC<ResultsCardProps> = ({ data }) => {
 
   return (
     <Card
-      className={` px-5
+      className={`  md:px-5
               ${
                 theme === 'dark'
                   ? 'bg-[#1E2A47]'
@@ -50,15 +50,15 @@ export const ResultsCard: FC<ResultsCardProps> = ({ data }) => {
               }
               `}
     >
-      <CardHeader className='flex flex-row items-start self-stretch gap-10'>
-        <Avatar>
+      <CardHeader className='flex flex-row items-start self-stretch gap-5 md:gap-10'>
+        <Avatar className='h-[4.3rem] w-[4.3rem]'>
           <AvatarImage src={data?.avatar_url} alt={data?.login} />
           <AvatarFallback>{data?.login}</AvatarFallback>
         </Avatar>
         <div className='ml-2 space-y-8 flex-1'>
-          <div className='flex justify-between '>
+          <div className='flex flex-col md:flex-row justify-between '>
             <CardTitle>{data?.name}</CardTitle>
-            <CardDescription className='mt-5'>
+            <CardDescription className='my-2 md:mt-5'>
               <span className='text-sm opacity-80 font-normal'>
                 Joined {formattedDate}
               </span>
@@ -71,7 +71,7 @@ export const ResultsCard: FC<ResultsCardProps> = ({ data }) => {
           >
             @{data?.login}
           </Link>
-          <div>
+          <div className='hidden md:block '>
             {data?.bio ? (
               <>{data?.bio}</>
             ) : (
@@ -82,7 +82,7 @@ export const ResultsCard: FC<ResultsCardProps> = ({ data }) => {
           </div>
           <div
             className={cn(
-              'flex items-center justify-between  px-5 h-[5.13rem]  rounded-[0.62rem]',
+              'hidden md:flex items-center justify-between  px-5 h-[5.13rem]  rounded-[0.62rem]',
               {
                 'bg-[#F6F8FF]': theme === 'light',
                 'bg-[#141D2F]': theme === 'dark',
@@ -102,7 +102,7 @@ export const ResultsCard: FC<ResultsCardProps> = ({ data }) => {
               <span className='text-xl font-bold'>{data?.following}</span>
             </p>
           </div>
-          <div className='grid grid-cols-2  gap-4 pt-8'>
+          <div className='hidden md:grid grid-cols-2  gap-4 pt-8'>
             <div className={getTextClass(theme)}>
               <LocationIcon />
               <div>{data?.location}</div>
@@ -164,7 +164,92 @@ export const ResultsCard: FC<ResultsCardProps> = ({ data }) => {
         </div>
       </CardHeader>
 
-      <CardContent></CardContent>
+      <CardContent className='flex flex-col'>
+        <div className='block md:hidden mb-5'>
+          {data?.bio ? (
+            <>{data?.bio}</>
+          ) : (
+            <span className='opacity-75 text-[#4B6A9B]'>
+              This profile has no bio
+            </span>
+          )}{' '}
+        </div>
+
+        <div
+          className={cn(
+            'md:hidden flex  items-center justify-between  px-5 h-[5.13rem]  rounded-[0.62rem]',
+            {
+              'bg-[#F6F8FF]': theme === 'light',
+              'bg-[#141D2F]': theme === 'dark',
+            }
+          )}
+        >
+          <p className='flex flex-col gap-3'>
+            Repos
+            <span className='text-xl font-bold'>{data?.public_repos}</span>
+          </p>
+          <p className='flex flex-col gap-3'>
+            Followers
+            <span className='text-xl font-bold'>{data?.followers}</span>
+          </p>
+          <p className='flex flex-col gap-3'>
+            Following
+            <span className='text-xl font-bold'>{data?.following}</span>
+          </p>
+        </div>
+        <div className='flex flex-col md:hidden  gap-2 pt-8'>
+          <div className={getTextClass(theme)}>
+            <LocationIcon />
+            <div>{data?.location}</div>
+          </div>
+          <div className={getTextClass(theme)}>
+            <TwitterIcon />
+            <div>
+              {data?.twitter_username ? (
+                <>
+                  <Link
+                    href={`https://twitter.com/${data?.twitter_username}`}
+                    target='_blank'
+                  >
+                    {data?.twitter_username}
+                  </Link>
+                </>
+              ) : (
+                <span className='opacity-75 text-[#4B6A9B]'>Not Available</span>
+              )}
+            </div>
+          </div>
+          <div className={getTextClass(theme)}>
+            <LinkIcon />
+            <div>
+              {data?.blog ? (
+                <>
+                  <Link href={`${data?.blog}`} target='_blank'>
+                    {data?.blog}
+                  </Link>
+                </>
+              ) : (
+                <span className='opacity-75 text-[#4B6A9B]'>Not Available</span>
+              )}
+            </div>
+          </div>
+          <div className={getTextClass(theme)}>
+            <CompanyIcon />
+            {data?.company ? (
+              <>
+                <Link
+                  href={`https://github.com/${data?.company.replace('@', '')}`}
+                  target='_blank'
+                >
+                  {data?.company}
+                </Link>
+              </>
+            ) : (
+              <span className='opacity-75 text-[#4B6A9B]'>Not Available</span>
+            )}
+          </div>
+        </div>
+      </CardContent>
     </Card>
   );
 };
