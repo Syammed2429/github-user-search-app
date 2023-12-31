@@ -42,7 +42,7 @@ export const ResultsCard: FC<ResultsCardProps> = ({ data }) => {
 
   return (
     <Card
-      className={`  md:px-5
+      className={` mx-5 md:px-5
               ${
                 theme === 'dark'
                   ? 'bg-[#1E2A47]'
@@ -50,7 +50,7 @@ export const ResultsCard: FC<ResultsCardProps> = ({ data }) => {
               }
               `}
     >
-      <CardHeader className='flex flex-row items-start self-stretch gap-5 md:gap-10'>
+      <CardHeader className=' flex flex-row items-start self-stretch gap-5 md:gap-10'>
         <Avatar className='h-[4.3rem] w-[4.3rem]'>
           <AvatarImage src={data?.avatar_url} alt={data?.login} />
           <AvatarFallback>{data?.login}</AvatarFallback>
@@ -184,15 +184,15 @@ export const ResultsCard: FC<ResultsCardProps> = ({ data }) => {
             }
           )}
         >
-          <p className='flex flex-col gap-3'>
+          <p className='flex flex-col gap-3 text-[0.68rem]'>
             Repos
             <span className='text-xl font-bold'>{data?.public_repos}</span>
           </p>
-          <p className='flex flex-col gap-3'>
+          <p className='flex flex-col gap-3 text-[0.68rem]'>
             Followers
             <span className='text-xl font-bold'>{data?.followers}</span>
           </p>
-          <p className='flex flex-col gap-3'>
+          <p className='flex flex-col gap-3 text-[0.68rem]'>
             Following
             <span className='text-xl font-bold'>{data?.following}</span>
           </p>

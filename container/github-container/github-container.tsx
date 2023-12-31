@@ -25,9 +25,9 @@ export const GithubContainer = () => {
   });
 
   return (
-    <div className='flex flex-col items-center justify-center '>
+    <div className='flex flex-col items-center justify-center  '>
       <ModeToggle />
-      <div className='flex flex-col   md:w-[45rem]'>
+      <div className='flex flex-col  w-screen md:w-[45rem]'>
         <SearchInputBox
           onSearch={(data) => setSearchedUser(data)}
           resultsNotFound={!data}
@@ -42,7 +42,7 @@ export const GithubContainer = () => {
             </div>
           </div>
         ) : (
-            <ResultsCard data={data} />
+          <ResultsCard data={data} />
         )}
       </div>
     </div>
