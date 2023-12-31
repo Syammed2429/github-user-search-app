@@ -51,7 +51,7 @@ export const SearchInputBox: FC<SearchInputBoxProps> = ({
         }}
       />
       {resultsNotFound && (
-        <div className='absolute top-12 md:right-[8rem] px-2 text-[#F74646] font-bold'>
+        <div className='absolute top-12 md:top-5  md:right-[8rem] px-2 text-[#F74646] font-bold'>
           No results
         </div>
       )}
